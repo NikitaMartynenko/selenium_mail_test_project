@@ -1,7 +1,7 @@
 import time
 import random
 import string
-from .config_tests import login, password, get_random_word
+from .config_for_tests import login, password, get_random_word
 
 from pages.base_page import BasePage
 from pages.message_page import MessagePage
