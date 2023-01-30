@@ -28,6 +28,6 @@ class MessagePageLocators:
     CLOSE_BUTTON = (By.CSS_SELECTOR, "[data-highlighted-class='button2_highlighted'].button2_close")
 
     TO_MYSELF_BUTTON = (By.CSS_SELECTOR, "[href='/tomyself/?']")
-    THEME_IN_MESSAGE = (By.CSS_SELECTOR, ".l7xCBc7")
-    BODY_IN_MESSAGE = (By.CSS_SELECTOR, ".l7xCBDB")
+    THEME_IN_MESSAGE = (By.CSS_SELECTOR, "")
+    BODY_IN_MESSAGE = (By.CSS_SELECTOR, "")
 
