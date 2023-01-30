@@ -23,12 +23,21 @@ def test_send_letter(browser):
     time.sleep(5)
 
     amount_of_messages = random.randint(1,5)
+    message_list = []
+    theme_list = []
     for i in range(amount_of_messages):
         message = get_random_word(10)
         theme = get_random_word(10)
         message_page.send_message(login, message, theme)
 
-    #message_page.check_mails_delivered()
+        message_list.append(message)
+        theme_list.append(theme)
+
+    message_page.go_to_yourself_messages()
+
+    for i in range(amount_of_messages):
+        message_page.is_message_body_present(message_list[i])
+        message_page.is_message_theme_present(theme_list[i])
 
 
 
