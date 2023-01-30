@@ -1,5 +1,5 @@
 import time
-
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from locators.locators import BasePageLocators
 
@@ -13,6 +13,13 @@ class BasePage:
     def open(self):
         self.browser.get(self.url)
 
+    def is_element_present(self, how, what):
+        try:
+            self.browser.find_element(how, what)
+        except NoSuchElementException:
+            return False
+        return True
+
     def go_to_login_page(self):
         link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         link.click()
@@ -21,9 +28,6 @@ class BasePage:
 
         iframe_1 = self.browser.find_element(*BasePageLocators.IFRAME_1)
         self.browser.switch_to.frame(iframe_1)
-
-        #xz_field = self.browser.find_element(*BasePageLocators.XZ_FIELD)
-        #print(f'//////атрибутик = {xz_field.get_attribute("a")}')
 
         login_field = self.browser.find_element(*BasePageLocators.LOGIN_FIELD)
         login_field.send_keys(login)
