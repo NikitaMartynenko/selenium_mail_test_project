@@ -1,5 +1,6 @@
 from pages.base_page import BasePage
 from locators.locators import MessagePageLocators
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
 
@@ -35,18 +36,17 @@ class MessagePage(BasePage):
         close_button = self.browser.find_element(*MessagePageLocators.CLOSE_BUTTON)
         close_button.click()
 
-    def check_mails_delivered(self):
+    def go_to_yourself_messages(self):
         to_myself_button = self.browser.find_element(*MessagePageLocators.TO_MYSELF_BUTTON)
         to_myself_button.click()
 
-        theme_in_message = self.browser.find_elements(*MessagePageLocators.THEME_IN_MESSAGE)
+    def is_message_theme_present(self, theme):
+        assert self.is_element_present(By.XPATH, f"//span[text() = '{theme}']"), \
+            f"Theme '{theme}' in messages is not presented, but should be"
 
-        for i in theme_in_message:
-            print(f'theme_i = {i.get_attribute("span")}')
-
-        #to_myself_button.get_attribute("span")
-
-
+    def is_message_body_present(self, body):
+        assert self.is_element_present(By.XPATH, f"//span[text() = '{body}']"), \
+            f"Body '{body}' in messages is not presented, but should be"
 
 
 
