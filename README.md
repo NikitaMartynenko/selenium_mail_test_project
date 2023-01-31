@@ -9,14 +9,17 @@
 + Delete all received mails except the last one
 
 ## Копирование репозитория и установка зависимостей.
-git clone https://github.com/NikitaMartynenko/selenium_mail_test_project
-
-pip install -r requirements.txt
++ git clone https://github.com/NikitaMartynenko/selenium_mail_test_project
++ cd selenium_mail_test_project
++ virtualenv env
++ python -m venv rest_env
++ rest_env\Scripts\activate.bat
++ pip install -r requirements.txt
 
 ## Запуск тестов.
-cd tests
-
-pytest -s -v --tb=line test_send_letter.py
++ В файле tests/config_for_tests.py в переменных login, password указать логин, пароль для входа в почту.
++ cd tests
++ pytest -s -v --tb=line test_send_letter.py
 
 
 
