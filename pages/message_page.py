@@ -1,17 +1,12 @@
 from pages.base_page import BasePage
 from locators.locators import MessagePageLocators
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-import time
 
 
 class MessagePage(BasePage):
-    def check_email(self, login):
+    def close_calendar_alert(self):
         try_calendar_alert = self.browser.find_element(*MessagePageLocators.TRY_CALENDAR_ALERT)
         try_calendar_alert.click()
-
-        #check_email = self.browser.find_element(*MessagePageLocators.CHECK_EMAIL)
-        #assert check_email.get_atribute("span") == login, f'Login failed'
 
     def send_message(self, login, message, theme):
         write_message_button = self.browser.find_element(*MessagePageLocators.WRITE_MESSAGE_BUTTON)
@@ -47,6 +42,23 @@ class MessagePage(BasePage):
     def is_message_body_present(self, body):
         assert self.is_element_present(By.XPATH, f"//span[text() = '{body}']"), \
             f"Body '{body}' in messages is not presented, but should be"
+
+    def delete_received_message(self, theme):
+        message = self.browser.find_element(By.XPATH, f"//span[text() = '{theme}']")
+        message.click()
+        delete_message_button = self.browser.find_element(*MessagePageLocators.DELETE_MESSAGE_BUTTON)
+        delete_message_button.click()
+
+
+
+
+
+
+
+
+
+
+
 
 
 

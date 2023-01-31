@@ -1,6 +1,4 @@
-import time
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.support.ui import WebDriverWait
 from locators.locators import BasePageLocators
 
 
@@ -25,7 +23,6 @@ class BasePage:
         link.click()
 
     def login_user(self, login, password):
-
         iframe_1 = self.browser.find_element(*BasePageLocators.IFRAME_1)
         self.browser.switch_to.frame(iframe_1)
 
